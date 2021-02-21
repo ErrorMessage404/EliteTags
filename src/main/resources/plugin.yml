@@ -2,6 +2,7 @@ name: EliteTags
 description: A simple tag plugin
 version: 0.0.1
 author: Error
+website: https://discord.gg/5kqj6aH
 
 main: me.error.tags.EliteTags
 

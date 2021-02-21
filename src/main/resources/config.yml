@@ -1,14 +1,41 @@
 # General Config
 Permissions:
-  UseCustomPermissions: true    # When true Permisson will be used as the permission rerquied instead of the default permession of elitetags.access.tagname
+  # Whether or not plugin uses default permissions,
+  # When true Permisson will be used as the permission rerquied instead of the default permession of elitetags.access.tagname
+  UseCustomPermissions: true
 
-# Tags
+Customization:
+  TagsMenu:
+    TagsItem:
+      # The following placeholders can be used in the TagItems section
+      # {tag_name}    >>> The name of the tag
+      # {tag_displayName}    >>> The formated tag (This is what is displayed with the %elitetags_tag_current% placeholder)
+      # {tag_description}    >>> The description of the tag
+      # {tag_status}    >>> Displays TagStatus_UnlockedPlaceholder if the user has access to the tag, and displays TagStatus_LockedPlaceholder is the user doesn't have access to the tag.
+      TagStatus_LockedPlaceholder: "&c&lLocked"
+      TagStatus_UnlockedPlaceholder: "&a&lUnlocked"
+      Material: "NAME_TAG"    # NOTE: BE SURE TO USE A 1.8.8 MATERIAL UNTIL I ADD MULTIPLE VERSION SUPPORT ***RECOMENDED TO LEAVE AS NAME_TAG FOR BEST RESULTS***
+      DisplayName: "&6{tag_name} &eTag"     # The name of the item
+      Lore:
+        -
+
+
+    # Name of the /tags GUI
+    MenuTitle: "&e&lTag Selector"
+
+    # Size of the /tags GUI
+    # Must be one of the following: 36 45 54 ***RECOMENDED TO LEAVE AT 54 FOR BEST RESULTS***
+    MenuSize: 54
+
+# Tags Config
 #- Name: Example      >>> The name of the tag
 #  DisplayName: "&eExample&4&lTag"      >>> The formated tag, this is what is displayed with the %elitetags_tag_current% placeholder
+#  Description: "An example for how to configure tags"      >>> The description of the tag
 #  RequiresPermission: true      >>> If users need a permission node to use the tag, if this is set to true and UseCustomPermissions is also true the permission required is the one listed bellow
 #  Permisson: tags.access.example      >>> The required permission if RequiresPermission and UseCustomPermissions are both true
 Tags:
     - Name: Example
       DisplayName: "&eExample&4&lTag"
+      Description: "An example for how to configure tags"
       RequiresPermission: true
       Permisson: elitetags.access.exampletag
