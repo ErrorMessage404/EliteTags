@@ -3,6 +3,7 @@ package me.error.tags;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderHook;
 import me.error.tags.Managers.ConfigManager;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,8 @@ public class EliteTags extends JavaPlugin {
 
 
     public void onEnable() {
+        Bukkit.getConsoleSender().sendMessage("* * * EliteTags Is Enabling * * *");
+
         registerManagers();
         registerCommands();
         registerEvents();
