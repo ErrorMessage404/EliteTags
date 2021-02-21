@@ -1,0 +1,9 @@
+name: EliteTags
+description: A simple tag plugin
+version: 0.0.1
+author: Error
+
+main: me.error.tags.EliteTags
+
+depend:
+  - PlaceholderAPI
