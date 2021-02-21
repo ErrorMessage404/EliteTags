@@ -3,10 +3,13 @@ package me.error.tags;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderHook;
 import me.error.tags.Managers.ConfigManager;
+import me.error.tags.MenuSystem.PlayerMenuUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.HashMap;
 
 public class EliteTags extends JavaPlugin {
 
@@ -14,7 +17,9 @@ public class EliteTags extends JavaPlugin {
 
     public static ConfigManager cfgm; // Used for loading data.yml
 
+    private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<Player, PlayerMenuUtility>();
 
+    @Override
     public void onEnable() {
         Bukkit.getConsoleSender().sendMessage("* * * EliteTags Is Enabling * * *");
 
@@ -27,6 +32,24 @@ public class EliteTags extends JavaPlugin {
         saveDefaultConfig();
 
         plugin = this;
+    }
+
+    @Override
+    public void onDisable () {
+
+    }
+
+    public static PlayerMenuUtility getPlayerMenuUtility(Player p) {
+        PlayerMenuUtility playerMenuUtility;
+
+        if (playerMenuUtilityMap.containsKey(p)) {
+            return playerMenuUtilityMap.get(p);
+        } else {
+            playerMenuUtility = new PlayerMenuUtility(p);
+            playerMenuUtilityMap.put(p, playerMenuUtility);
+
+            return playerMenuUtility;
+        }
     }
 
     //Register Placeholders
