@@ -17,7 +17,8 @@ Customization:
       Material: "NAME_TAG"    # NOTE: BE SURE TO USE A 1.8.8 MATERIAL UNTIL I ADD MULTIPLE VERSION SUPPORT ***RECOMENDED TO LEAVE AS NAME_TAG FOR BEST RESULTS***
       DisplayName: "&6{tag_name} &eTag"     # The name of the item
       Lore:
-        -
+        - "&6Description: &f{tag_description}"
+        - "&6Status: {tag_status}"
 
 
     # Name of the /tags GUI
