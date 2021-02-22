@@ -65,7 +65,7 @@
                     <relocations>
                         <relocation>
                             <pattern>de.tr7zw.changeme.nbtapi</pattern>
-                            <shadedPattern>me.badbones69.crazyenchantments.nbtapi</shadedPattern>
+                            <shadedPattern>me.error.tags.nbtapi</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
