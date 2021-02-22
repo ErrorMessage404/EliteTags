@@ -4,6 +4,8 @@ import me.error.tags.EliteTags;
 import me.error.tags.MenuSystem.Menu;
 import me.error.tags.Utils.BasicUtils;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;\
+import java.util.ArrayList;
 
 public class TagsMenu extends Menu {
 
@@ -19,9 +21,13 @@ public class TagsMenu extends Menu {
 
     public void handleMenu(InventoryClickEvent e) {
 
+
+
     }
 
     public void setMenuItems() {
+
+        ArrayList<ItemStack> tagItems = new ArrayList<ItemStack>();
 
     }
 }

@@ -33,10 +33,12 @@ Customization:
 #  DisplayName: "&eExample&4&lTag"      >>> The formated tag, this is what is displayed with the %elitetags_tag_current% placeholder
 #  Description: "An example for how to configure tags"      >>> The description of the tag
 #  RequiresPermission: true      >>> If users need a permission node to use the tag, if this is set to true and UseCustomPermissions is also true the permission required is the one listed bellow
+#  ID: 1      >>> The ID of the tag, each tag must have a different id
 #  Permisson: tags.access.example      >>> The required permission if RequiresPermission and UseCustomPermissions are both true
 Tags:
     - Name: Example
       DisplayName: "&eExample&4&lTag"
       Description: "An example for how to configure tags"
       RequiresPermission: true
+      ID: 1
       Permisson: elitetags.access.exampletag

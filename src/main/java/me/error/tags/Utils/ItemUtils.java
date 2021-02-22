@@ -1,5 +1,7 @@
 package me.error.tags.Utils;
 
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTItem;
 import me.error.tags.EliteTags;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -14,9 +16,10 @@ public class ItemUtils {
 
     private static EliteTags plugin;
 
-    public static ItemStack TagItem(Player p, String name, String formatedName, String description, ArrayList<String> lore, Boolean requiresPermission, String permission) {
+    public static ItemStack TagItem(Player p, String name, String formatedName, String description, ArrayList<String> lore, int ID, Boolean requiresPermission, String permission) {
         // Creating Tag Item
         ItemStack i = new ItemStack(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.TagsItem.Material")));
+        ItemStack FinalItem;
 
         // Getting Tag Item Meta
         ItemMeta iMeta = i.getItemMeta();
@@ -63,6 +66,13 @@ public class ItemUtils {
         // Applying Meta To ItemStack
         i.setItemMeta(iMeta);
 
-        return i;
+        // Adding ID NBT
+        NBTItem i_nbt = new NBTItem(i);
+        NBTCompound i_nbt_id = i_nbt.addCompound("TagID");
+        i_nbt_id.setInteger("TagID", ID);
+        FinalItem = i_nbt.getItem();
+
+        return FinalItem;
     }
+
 }
