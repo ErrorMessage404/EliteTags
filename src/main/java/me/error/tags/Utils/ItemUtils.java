@@ -2,15 +2,19 @@ package me.error.tags.Utils;
 
 import me.error.tags.EliteTags;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
 
 public class ItemUtils {
 
     private static EliteTags plugin;
 
-    public static ItemStack TagItem(Player p, String name, String formatedName, String description, String[] lore, Boolean requiresPermission, String permission) {
+    public static ItemStack TagItem(Player p, String name, String formatedName, String description, ArrayList<String> lore, Boolean requiresPermission, String permission) {
         // Creating Tag Item
         ItemStack i = new ItemStack(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.TagsItem.Material")));
 
@@ -39,6 +43,25 @@ public class ItemUtils {
                 .replace("{tag_description}", description)
                 .replace("{tag_status}", i_status);
         iMeta.setDisplayName(BasicUtils.chat(i_name));
+
+        // Enchant Item If User Has Tag Enabled
+        if(plugin.cfgm.getData().getString(p.getUniqueId().toString()).equals(name)) {
+            i.addEnchantment(Enchantment.LURE, 1);
+            iMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+
+        // Setting Lore
+        ArrayList<String> i_lore = new ArrayList<String>();
+        for (int x = 0; x < lore.size(); x++) {
+            i_lore.add(BasicUtils.chat(lore.get(x).replace("{tag_name}", name)
+                    .replace("{tag_displayName}", formatedName)
+                    .replace("{tag_description}", description)
+                    .replace("{tag_status}", i_status)));
+        }
+        iMeta.setLore(i_lore);
+
+        // Applying Meta To ItemStack
+        i.setItemMeta(iMeta);
 
         return i;
     }
