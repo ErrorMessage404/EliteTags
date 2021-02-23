@@ -1,15 +1,21 @@
 package me.error.tags.MenuSystem.menu;
 
+import de.tr7zw.nbtapi.NBTItem;
 import me.error.tags.EliteTags;
 import me.error.tags.MenuSystem.Menu;
+import me.error.tags.MenuSystem.PlayerMenuUtility;
 import me.error.tags.Utils.BasicUtils;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemStack;\
+import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 
 public class TagsMenu extends Menu {
 
     private static EliteTags plugin;
+
+    public TagsMenu(PlayerMenuUtility playerMenuUtility) {
+        super(playerMenuUtility);
+    }
 
     public String getMenuName() {
         return BasicUtils.chat(plugin.getConfig().getString("Customization.TagsMenu.MenuTitle"));
@@ -21,7 +27,8 @@ public class TagsMenu extends Menu {
 
     public void handleMenu(InventoryClickEvent e) {
 
-
+        NBTItem i_nbt = new NBTItem(e.getCurrentItem());
+        System.out.print(i_nbt.getCompound("TagID").getInteger("TagID"));
 
     }
 

@@ -1,4 +1,5 @@
 # General Config
+Debug: true
 Permissions:
   # Whether or not plugin uses default permissions,
   # When true Permisson will be used as the permission rerquied instead of the default permession of elitetags.access.tagname

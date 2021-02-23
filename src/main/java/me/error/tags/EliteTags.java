@@ -2,8 +2,10 @@ package me.error.tags;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderHook;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.error.tags.Managers.ConfigManager;
 import me.error.tags.MenuSystem.PlayerMenuUtility;
+import me.error.tags.Utils.ConsoleUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -14,24 +16,39 @@ import java.util.HashMap;
 public class EliteTags extends JavaPlugin {
 
     public static EliteTags plugin;
-
+    public static Boolean debug;
     public static ConfigManager cfgm; // Used for loading data.yml
 
     private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<Player, PlayerMenuUtility>();
 
     @Override
     public void onEnable() {
-        Bukkit.getConsoleSender().sendMessage("* * * EliteTags Is Enabling * * *");
+        debug = this.getConfig().getBoolean("Debug");
 
+        ConsoleUtils.Msg("* * * EliteTags Is Enabling * * *");
+        if (debug) ConsoleUtils.Info("Debug Is Enabled, There Will Be Extra Logging");
+
+        if (debug) ConsoleUtils.Info("Begining Registering Managers...");
         registerManagers();
+        if (debug) ConsoleUtils.Info("Finished Registering Managers.");
+
+        if (debug) ConsoleUtils.Info("Begining Registering Commands...");
         registerCommands();
+        if (debug) ConsoleUtils.Info("Finished Registering Commands.");
+
+        if (debug) ConsoleUtils.Info("Begining Registering Events...");
         registerEvents();
+        if (debug) ConsoleUtils.Info("Finished Registering Events.");
+
+        if (debug) ConsoleUtils.Info("Begining Registering Placeholders...");
         registerPlaceholders();
+        if (debug) ConsoleUtils.Info("Finished Registering Placeholders.");
 
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
         plugin = this;
+
     }
 
     @Override
@@ -54,24 +71,7 @@ public class EliteTags extends JavaPlugin {
 
     //Register Placeholders
     public void registerPlaceholders() {
-        PlaceholderAPI.registerPlaceholderHook("EliteTags", new PlaceholderHook() {
-            @Override
-            public String onRequest(OfflinePlayer p, String params) {
-                if(p != null && p.isOnline()) return onPlaceholderRequest(p.getPlayer(), params);
-                if(params.equalsIgnoreCase("tag_current")) return "N/A";
 
-                return null;
-            }
-
-            @Override
-            public String onPlaceholderRequest(Player p, String params) {
-                if(p == null) return null;
-                if(params.equalsIgnoreCase("creator")) return "ErrorMessage_404";
-                if(params.equalsIgnoreCase("tag_current")) return "N/A";
-
-                return null;
-            }
-        });
     }
 
     // Register Commands
@@ -84,11 +84,15 @@ public class EliteTags extends JavaPlugin {
 
     // Register Managers
     public void registerManagers() {
+        if (debug) ConsoleUtils.Info("Registering Config Manager...");
         cfgm = new ConfigManager(this);
+        if (debug) ConsoleUtils.Info("Finished Registering Config Manager.");
+
         // data.yml
         cfgm.setupData();
         cfgm.reloadData();
         cfgm.reloadData();
+        if (debug) ConsoleUtils.Info("Successfully Registered 1/1 Managers.");
     }
 
 

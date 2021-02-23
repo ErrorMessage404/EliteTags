@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="EliteTags:jar">
+    <output-path>$USER_HOME$/Desktop/Dev Server/plugins</output-path>
+    <root id="archive" name="EliteTags.jar">
+      <element id="module-output" name="EliteTags" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/de/tr7zw/item-nbt-api-plugin/2.7.1/item-nbt-api-plugin-2.7.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

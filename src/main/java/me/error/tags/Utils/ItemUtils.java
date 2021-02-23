@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemUtils {
 
@@ -73,6 +74,15 @@ public class ItemUtils {
         FinalItem = i_nbt.getItem();
 
         return FinalItem;
+    }
+
+    public static ArrayList<ItemStack> CreateAllTagItems() {
+        ArrayList<ItemStack> TagItems = new ArrayList<ItemStack>();
+        List TagsConfig = plugin.getConfig().getList("Tags");
+
+        
+
+        return TagItems;
     }
 
 }
