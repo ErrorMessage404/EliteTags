@@ -3,6 +3,7 @@ package me.error.tags;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderHook;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.error.tags.Listener.MenuListener;
 import me.error.tags.Managers.ConfigManager;
 import me.error.tags.MenuSystem.PlayerMenuUtility;
 import me.error.tags.Utils.ConsoleUtils;
@@ -76,10 +77,17 @@ public class EliteTags extends JavaPlugin {
 
     // Register Commands
     public void registerCommands() {
+
+        if (debug) ConsoleUtils.Info("Successfully Registered 1/1 Commands.");
     }
 
     // Register Events
     public void registerEvents() {
+        if (debug) ConsoleUtils.Info("Registering Menu Listener...");
+        getServer().getPluginManager().registerEvents(new MenuListener(), this);
+        if (debug) ConsoleUtils.Info("Finished Registering Menu Listener.");
+
+        if (debug) ConsoleUtils.Info("Successfully Registered 1/1 Listeners.");
     }
 
     // Register Managers

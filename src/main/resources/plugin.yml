@@ -8,3 +8,8 @@ main: me.error.tags.EliteTags
 
 depend:
   - PlaceholderAPI
+
+commands:
+  tag:
+    description: Select a tag.
+    aliases: [tags]
