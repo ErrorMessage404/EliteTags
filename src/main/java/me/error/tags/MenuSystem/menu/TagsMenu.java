@@ -5,13 +5,15 @@ import me.error.tags.EliteTags;
 import me.error.tags.MenuSystem.Menu;
 import me.error.tags.MenuSystem.PlayerMenuUtility;
 import me.error.tags.Utils.BasicUtils;
+import me.error.tags.Utils.ConsoleUtils;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 
 public class TagsMenu extends Menu {
 
-    private static EliteTags plugin;
+    private static EliteTags plugin = EliteTags.plugin;
 
     public TagsMenu(PlayerMenuUtility playerMenuUtility) {
         super(playerMenuUtility);
@@ -35,6 +37,8 @@ public class TagsMenu extends Menu {
     public void setMenuItems() {
 
         ArrayList<ItemStack> tagItems = new ArrayList<ItemStack>();
+        Player p = playerMenuUtility.getOwner();
+
 
     }
 }

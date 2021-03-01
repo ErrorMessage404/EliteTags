@@ -1,18 +1,14 @@
 package me.error.tags;
 
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderHook;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.error.tags.Commands.TagCommand;
 import me.error.tags.Listener.MenuListener;
 import me.error.tags.Managers.ConfigManager;
 import me.error.tags.MenuSystem.PlayerMenuUtility;
 import me.error.tags.Utils.ConsoleUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class EliteTags extends JavaPlugin {

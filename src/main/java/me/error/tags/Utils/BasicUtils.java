@@ -2,12 +2,11 @@ package me.error.tags.Utils;
 
 import me.error.tags.EliteTags;
 import org.bukkit.ChatColor;
-
 import java.util.concurrent.TimeUnit;
 
 public class BasicUtils {
 
-    private static EliteTags plugin;
+    private static EliteTags plugin = EliteTags.plugin;
 
     public static String chat(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);
@@ -20,5 +19,6 @@ public class BasicUtils {
             interruptedException.printStackTrace();
         }
     }
+
 
 }

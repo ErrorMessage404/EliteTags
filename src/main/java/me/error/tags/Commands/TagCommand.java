@@ -18,6 +18,7 @@ public class TagCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player p = (Player) sender;
+
         new TagsMenu(EliteTags.getPlayerMenuUtility(p)).open();
 
         return true;

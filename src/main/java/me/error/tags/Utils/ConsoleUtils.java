@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 
 public class ConsoleUtils {
 
-    private static EliteTags plugin;
+    private static EliteTags plugin = EliteTags.plugin;
     private static final String consolePrefix = "[EliteTags]";
 
     public static void Warn(String s) {

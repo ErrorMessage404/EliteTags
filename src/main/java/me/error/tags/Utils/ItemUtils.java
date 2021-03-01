@@ -12,10 +12,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ItemUtils {
 
-    private static EliteTags plugin;
+    private static EliteTags plugin = EliteTags.plugin;
 
     public static ItemStack TagItem(Player p, String name, String formatedName, String description, ArrayList<String> lore, int ID, Boolean requiresPermission, String permission) {
         // Creating Tag Item
@@ -76,11 +77,14 @@ public class ItemUtils {
         return FinalItem;
     }
 
-    public static ArrayList<ItemStack> CreateAllTagItems() {
+    public static ArrayList<ItemStack> CreateAllTagItems(Player player) {
         ArrayList<ItemStack> TagItems = new ArrayList<ItemStack>();
-        List TagsConfig = plugin.getConfig().getList("Tags");
+        List TagsConfig = plugin.getConfig().getMapList("Tags");
+//        System.out.println(TagsConfig);
 
-        
+        for (int x = 0; x < TagsConfig.size(); x++) {
+//            TagItem(player, TagsConfig.get(x))
+        }
 
         return TagItems;
     }
