@@ -6,6 +6,7 @@ import me.error.tags.MenuSystem.Menu;
 import me.error.tags.MenuSystem.PlayerMenuUtility;
 import me.error.tags.Utils.BasicUtils;
 import me.error.tags.Utils.ConsoleUtils;
+import me.error.tags.Utils.ItemUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -30,15 +31,21 @@ public class TagsMenu extends Menu {
     public void handleMenu(InventoryClickEvent e) {
 
         NBTItem i_nbt = new NBTItem(e.getCurrentItem());
-        System.out.print(i_nbt.getCompound("TagID").getInteger("TagID"));
-
+        plugin.cfgm.getData().set(playerMenuUtility.getOwner().getUniqueId().toString(), i_nbt.getCompound("TagID").getInteger("TagID"));
+        plugin.cfgm.saveData();
+        plugin.cfgm.reloadData();
+        e.getWhoClicked().closeInventory();
+        new TagsMenu(EliteTags.getPlayerMenuUtility(playerMenuUtility.getOwner())).open();
     }
 
     public void setMenuItems() {
-
-        ArrayList<ItemStack> tagItems = new ArrayList<ItemStack>();
         Player p = playerMenuUtility.getOwner();
+        ArrayList<ItemStack> tagItems = ItemUtils.CreateAllTagItems(p);
 
+        tagItems.forEach(i -> {
+            if(i == null) return;
+            inventory.addItem(i);
+        });
 
     }
 }

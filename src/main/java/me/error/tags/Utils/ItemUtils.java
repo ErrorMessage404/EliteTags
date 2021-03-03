@@ -13,6 +13,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ItemUtils {
 
@@ -49,12 +51,6 @@ public class ItemUtils {
                 .replace("{tag_status}", i_status);
         iMeta.setDisplayName(BasicUtils.chat(i_name));
 
-        // Enchant Item If User Has Tag Enabled
-        if(plugin.cfgm.getData().getString(p.getUniqueId().toString()).equals(name)) {
-            i.addEnchantment(Enchantment.LURE, 1);
-            iMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        }
-
         // Setting Lore
         ArrayList<String> i_lore = new ArrayList<String>();
         for (int x = 0; x < lore.size(); x++) {
@@ -74,16 +70,56 @@ public class ItemUtils {
         i_nbt_id.setInteger("TagID", ID);
         FinalItem = i_nbt.getItem();
 
+        // Enchant Item If User Has Tag Enabled
+        if(plugin.cfgm.getData().contains(p.getUniqueId().toString())) {
+            if(plugin.cfgm.getData().getString(p.getUniqueId().toString()).equals(String.valueOf(ID))) {
+                FinalItem.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+                ItemMeta fMeta = FinalItem.getItemMeta();
+                fMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                FinalItem.setItemMeta(fMeta);
+            }
+        }
+
         return FinalItem;
     }
 
     public static ArrayList<ItemStack> CreateAllTagItems(Player player) {
         ArrayList<ItemStack> TagItems = new ArrayList<ItemStack>();
-        List TagsConfig = plugin.getConfig().getMapList("Tags");
-//        System.out.println(TagsConfig);
+        List tags = plugin.getConfig().getList("Tags");
+        for (int x = 0; x < tags.size(); x++) {
+            String name = null, displayname = null, description = null, permission = null;
+            Boolean requiresPermission = null;
+            Integer id = null;
 
-        for (int x = 0; x < TagsConfig.size(); x++) {
-//            TagItem(player, TagsConfig.get(x))
+            Pattern namePattern = Pattern.compile("(?<=Name=)(.*)(?=, DisplayName=)", Pattern.DOTALL);
+            Matcher nameMatcher = namePattern.matcher(tags.get(x).toString());
+            if(nameMatcher.find()) name = nameMatcher.group(1);
+
+            Pattern displaynamePattern = Pattern.compile("(?<=, DisplayName=)(.*)(?=, Description=)", Pattern.DOTALL);
+            Matcher displaynameMatcher = displaynamePattern.matcher(tags.get(x).toString());
+            if(displaynameMatcher.find()) displayname = displaynameMatcher.group(1);
+
+            Pattern descriptionPattern = Pattern.compile("(?<=, Description=)(.*)(?=, RequiresPermission=)", Pattern.DOTALL);
+            Matcher descriptionMatcher = descriptionPattern.matcher(tags.get(x).toString());
+            if(descriptionMatcher.find()) description = descriptionMatcher.group(1);
+
+            Pattern requiresPermissionPattern = Pattern.compile("(?<=, RequiresPermission=)(.*)(?=, ID=)", Pattern.DOTALL);
+            Matcher requiresPermissionMatcher = requiresPermissionPattern.matcher(tags.get(x).toString());
+            if(requiresPermissionMatcher.find()) requiresPermission = Boolean.parseBoolean(requiresPermissionMatcher.group(1));
+
+            Pattern idPattern = Pattern.compile("(?<=, ID=)(.*)(?=, Permisson=)", Pattern.DOTALL);
+            Matcher idMatcher = idPattern.matcher(tags.get(x).toString());
+            if(idMatcher.find()) id = Integer.parseInt(idMatcher.group(1));
+
+            Pattern permissionPattern = Pattern.compile("(?<=, Permisson=)(.*)(?=})", Pattern.DOTALL);
+            Matcher permissionMatcher = permissionPattern.matcher(tags.get(x).toString());
+            if(permissionMatcher.find()) permission = permissionMatcher.group(1);
+
+            if(name == null || displayname == null || description == null || id == null || requiresPermission == null || permission == null) return null;
+            else {
+                ItemStack i = TagItem(player, name, displayname, description, (ArrayList<String>) plugin.getConfig().getList("Customization.TagsMenu.TagsItem.Lore"), id, requiresPermission, permission);
+                TagItems.add(i);
+            }
         }
 
         return TagItems;

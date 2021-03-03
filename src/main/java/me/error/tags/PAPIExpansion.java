@@ -1,6 +1,7 @@
 package me.error.tags;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.error.tags.Utils.BasicUtils;
 import org.bukkit.entity.Player;
 
 public class PAPIExpansion extends PlaceholderExpansion {
@@ -90,7 +91,7 @@ public class PAPIExpansion extends PlaceholderExpansion {
         if(player == null) return "";
 
         if(identifier.equals("tag_current")) {
-
+            return BasicUtils.GetActiveTag(player);
         }
 
         return null;

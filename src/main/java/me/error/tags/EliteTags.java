@@ -69,7 +69,7 @@ public class EliteTags extends JavaPlugin {
 
     //Register Placeholders
     public void registerPlaceholders() {
-
+        new PAPIExpansion(this).register();
     }
 
     // Register Commands
