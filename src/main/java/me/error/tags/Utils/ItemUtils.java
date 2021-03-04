@@ -121,8 +121,138 @@ public class ItemUtils {
                 TagItems.add(i);
             }
         }
-
         return TagItems;
     }
 
+    public static ItemStack getClearTagItem() {
+        ItemStack fi;
+        ItemStack i = new ItemStack(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.ClearTagItem.Material")));
+        ItemMeta iM = i.getItemMeta();
+        iM.setDisplayName(BasicUtils.chat(plugin.getConfig().getString("Customization.TagsMenu.ClearTagItem.DisplayName")));
+        if(plugin.getConfig().getList("Customization.TagsMenu.ClearTagItem.Lore").size() > 0) {
+            ArrayList<String> iL = new ArrayList<>();
+            for (int x = 0; x < plugin.getConfig().getList("Customization.TagsMenu.ClearTagItem.Lore").size(); x++) {
+                String e = BasicUtils.chat((String) plugin.getConfig().getList("Customization.TagsMenu.ClearTagItem.Lore").get(x));
+                iL.add(e);
+            }
+            iM.setLore(iL);
+        }
+        i.setItemMeta(iM);
+//        if(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.ClearTagItem.Material")).equals(Material.STAINED_CLAY) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.ClearTagItem.Material")).equals(Material.STAINED_GLASS) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.ClearTagItem.Material")).equals(Material.STAINED_GLASS_PANE) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.ClearTagItem.Material")).equals(Material.WOOL)) {
+//            i.setDurability((short) plugin.getConfig().getInt("Customization.TagsMenu.ClearTagItem.Color"));
+//        }
+
+        NBTItem i_nbt = new NBTItem(i);
+        NBTCompound i_nbt_id = i_nbt.addCompound("I_Use");
+        i_nbt_id.setString("I_Use", "ClearTag");
+        fi = i_nbt.getItem();
+
+        if(plugin.getConfig().getBoolean("Customization.TagsMenu.ClearTagItem.Glowing") == true) {
+            fi.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+            ItemMeta fiM = fi.getItemMeta();
+            fiM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            fi.setItemMeta(fiM);
+        }
+
+        return fi;
+    }
+
+    public static ItemStack getNextPageItem() {
+        ItemStack fi;
+        ItemStack i = new ItemStack(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.NextPage.Material")));
+        ItemMeta iM = i.getItemMeta();
+        iM.setDisplayName(BasicUtils.chat(plugin.getConfig().getString("Customization.TagsMenu.NextPage.DisplayName")));
+        if(plugin.getConfig().getList("Customization.TagsMenu.NextPage.Lore").size() > 0) {
+            ArrayList<String> iL = new ArrayList<>();
+            for (int x = 0; x < plugin.getConfig().getList("Customization.TagsMenu.NextPage.Lore").size(); x++) {
+                String e = BasicUtils.chat((String) plugin.getConfig().getList("Customization.TagsMenu.NextPage.Lore").get(x));
+                iL.add(e);
+            }
+            iM.setLore(iL);
+        }
+        i.setItemMeta(iM);
+//        if(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.NextPage.Material")).equals(Material.STAINED_CLAY) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.NextPage.Material")).equals(Material.STAINED_GLASS) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.NextPage.Material")).equals(Material.STAINED_GLASS_PANE) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.NextPage.Material")).equals(Material.WOOL)) {
+//            i.setDurability((short) plugin.getConfig().getInt("Customization.TagsMenu.NextPage.Color"));
+//        }
+
+        NBTItem i_nbt = new NBTItem(i);
+        NBTCompound i_nbt_id = i_nbt.addCompound("I_Use");
+        i_nbt_id.setString("I_Use", "NextPage");
+        fi = i_nbt.getItem();
+
+        if(plugin.getConfig().getBoolean("Customization.TagsMenu.NextPage.Glowing") == true) {
+            fi.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+            ItemMeta fiM = fi.getItemMeta();
+            fiM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            fi.setItemMeta(fiM);
+        }
+
+        return fi;
+    }
+
+    public static ItemStack getPreviousPageItem() {
+        ItemStack fi;
+        ItemStack i = new ItemStack(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.PreviousPage.Material")));
+        ItemMeta iM = i.getItemMeta();
+        iM.setDisplayName(BasicUtils.chat(plugin.getConfig().getString("Customization.TagsMenu.PreviousPage.DisplayName")));
+        if(plugin.getConfig().getList("Customization.TagsMenu.PreviousPage.Lore").size() > 0) {
+            ArrayList<String> iL = new ArrayList<>();
+            for (int x = 0; x < plugin.getConfig().getList("Customization.TagsMenu.PreviousPage.Lore").size(); x++) {
+                String e = BasicUtils.chat((String) plugin.getConfig().getList("Customization.TagsMenu.PreviousPage.Lore").get(x));
+                iL.add(e);
+            }
+            iM.setLore(iL);
+        }
+        i.setItemMeta(iM);
+//        if(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.PreviousPage.Material")).equals(Material.STAINED_CLAY) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.PreviousPage.Material")).equals(Material.STAINED_GLASS) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.PreviousPage.Material")).equals(Material.STAINED_GLASS_PANE) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.PreviousPage.Material")).equals(Material.WOOL)) {
+//            i.setDurability((short) plugin.getConfig().getInt("Customization.TagsMenu.PreviousPage.Color"));
+//        }
+
+        NBTItem i_nbt = new NBTItem(i);
+        NBTCompound i_nbt_id = i_nbt.addCompound("I_Use");
+        i_nbt_id.setString("I_Use", "PreviousPage");
+        fi = i_nbt.getItem();
+
+        if(plugin.getConfig().getBoolean("Customization.TagsMenu.PreviousPage.Glowing") == true) {
+            fi.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+            ItemMeta fiM = fi.getItemMeta();
+            fiM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            fi.setItemMeta(fiM);
+        }
+
+        return fi;
+    }
+
+    public static ItemStack getFillerItem() {
+        ItemStack fi;
+        ItemStack i = new ItemStack(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.Filler.Material")));
+        ItemMeta iM = i.getItemMeta();
+        iM.setDisplayName(BasicUtils.chat(plugin.getConfig().getString("Customization.TagsMenu.Filler.DisplayName")));
+        if(plugin.getConfig().getList("Customization.TagsMenu.Filler.Lore").size() > 0) {
+            ArrayList<String> iL = new ArrayList<>();
+            for (int x = 0; x < plugin.getConfig().getList("Customization.TagsMenu.Filler.Lore").size(); x++) {
+                String e = BasicUtils.chat((String) plugin.getConfig().getList("Customization.TagsMenu.Filler.Lore").get(x));
+                iL.add(e);
+            }
+            iM.setLore(iL);
+        }
+        i.setItemMeta(iM);
+        if(Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.Filler.Material")).equals(Material.STAINED_CLAY) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.Filler.Material")).equals(Material.STAINED_GLASS) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.Filler.Material")).equals(Material.STAINED_GLASS_PANE) || Material.valueOf(plugin.getConfig().getString("Customization.TagsMenu.Filler.Material")).equals(Material.WOOL)) {
+            i.setDurability((short) plugin.getConfig().getInt("Customization.TagsMenu.Filler.Color"));
+        }
+
+        NBTItem i_nbt = new NBTItem(i);
+        NBTCompound i_nbt_id = i_nbt.addCompound("I_Use");
+        i_nbt_id.setString("I_Use", "Filler");
+        fi = i_nbt.getItem();
+
+        if(plugin.getConfig().getBoolean("Customization.TagsMenu.Filler.Glowing") == true) {
+            fi.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+            ItemMeta fiM = fi.getItemMeta();
+            fiM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            fi.setItemMeta(fiM);
+        }
+
+        return fi;
+    }
 }

@@ -2,8 +2,10 @@ package me.error.tags.Utils;
 
 import me.error.tags.EliteTags;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -15,6 +17,16 @@ public class BasicUtils {
 
     public static String chat(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);
+    }
+
+    public static Integer getMaxSlots() {
+        switch (plugin.getConfig().getInt("Customization.TagsMenu.MenuSize")) {
+            case(54): return 27;
+            case(45): return 20;
+            case(36): return 13;
+            case(27): return 7;
+            default: return null;
+        }
     }
 
     public static void waitSeconds(int seconds) {
